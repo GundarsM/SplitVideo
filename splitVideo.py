@@ -16,10 +16,10 @@ def progress_bar(current, total, bar_length=20):
 
 
 parser = argparse.ArgumentParser(description="add video location and frames to process")
-parser.add_argument('-f', '--file', default='Natrix/nat2.mp4', required=False, help="path to input video")
-parser.add_argument('-o', '--output', default='output1', required=False, help="output folder name")
+parser.add_argument('-f', '--file', default='Natrix/nat3.mp4', required=False, help="path to input video")
+parser.add_argument('-o', '--output', default='output2', required=False, help="output folder name")
 parser.add_argument('-sf', '--start', default=0, required=False, help="Enter starting frame")
-parser.add_argument('-ef', '--end', default=max, required=False, help="Enter ending frame")
+parser.add_argument('-ef', '--end', default=  2525, required=False, help="Enter ending frame")
 parser.add_argument('-st', '--startTime', default='00:00:00', required=False, help="Enter ending frame")
 parser.add_argument('-et', '--endTime', default='00:00:00', required=False, help="Enter ending frame")
 args = parser.parse_args()

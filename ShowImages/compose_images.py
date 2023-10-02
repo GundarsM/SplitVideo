@@ -2,10 +2,11 @@ import cv2
 import os
 import numpy as np
 
+output_video = 1
 # files
-file_1_location = '/home/gundars/Documents/yolo/tiny_yolo/Natrix/out7/'
-file_2_location = '/home/gundars/Documents/yolo/tiny_yolo/Natrix/out8/'
-output_folder = 'output2'
+file_1_location = '/home/gundars/Documents/yolo/tiny_yolo/Natrix/out9/'
+file_2_location = '/home/gundars/Documents/yolo/tiny_yolo/Natrix/out10/'
+output_folder = 'output12'
 
 # read image file
 image_name = 'frame_'
@@ -13,10 +14,17 @@ image_name = 'frame_'
 # create output location
 if not os.path.isdir(output_folder):
     os.mkdir(output_folder)
+    if output_video:
+        os.mkdir(f'{output_folder}_video')
 
-first_frame_number = 1136       # input("Enter start frame :")
-last_frame_number =  1304       # input("Enter start frame :")
+first_frame_number = 4203       # input("Enter start frame :")
+last_frame_number =  4305       # input("Enter start frame :")
 current_frame = int(first_frame_number)
+
+# for video output
+if output_video:
+    video = cv2.VideoWriter(f'{output_folder}_video/output_filename.avi', 0, 30, (2160, 1920))
+    #video = cv2.VideoWriter('output_video.avi', 0, 1, (2160, 1920))
 
 # Setting up a view window
 cv2.namedWindow('composition', cv2.WINDOW_NORMAL)
@@ -36,12 +44,13 @@ while current_frame <= int(last_frame_number):
     # get image size
     h, w, _ = comp_img.shape
 
-    cv2.putText(comp_img, "YOLO v3", (10, 50), cv2.FONT_HERSHEY_PLAIN, 4, (0, 255, 0), 3)
-    cv2.putText(comp_img, "TINY YOLO v3", (int((w / 2) + 10), 50), cv2.FONT_HERSHEY_PLAIN, 4, (0, 255, 0), 3)
+    cv2.putText(comp_img, "TINY YOLO v4", (10, 50), cv2.FONT_HERSHEY_PLAIN, 4, (0, 255, 0), 3)
+    cv2.putText(comp_img, "TINY YOLO cust", (int((w / 2) + 10), 50), cv2.FONT_HERSHEY_PLAIN, 4, (0, 255, 0), 3)
     cv2.line(comp_img, (int(w/2), 0), (int(w/2), h), (255, 255, 255), 4)
 
     cv2.imshow('composition', comp_img,)
-
+    if output_video:
+        video.write(comp_img)
     # save the image
     cv2.imwrite(f'{output_folder}/out_{current_frame}.jpg', comp_img)
     current_frame += 1
@@ -56,3 +65,5 @@ while current_frame <= int(last_frame_number):
 
 # clean-up
 cv2.destroyAllWindows()
+if output_video:
+    video.release()
