@@ -6,7 +6,7 @@ output_video = 1
 # files
 file_1_location = '/home/gundars/Documents/yolo/tiny_yolo/Natrix/out9/'
 file_2_location = '/home/gundars/Documents/yolo/tiny_yolo/Natrix/out10/'
-output_folder = 'output12'
+output_folder = 'output14'
 
 # read image file
 image_name = 'frame_'
@@ -17,8 +17,8 @@ if not os.path.isdir(output_folder):
     if output_video:
         os.mkdir(f'{output_folder}_video')
 
-first_frame_number = 4203       # input("Enter start frame :")
-last_frame_number =  4305       # input("Enter start frame :")
+first_frame_number = 2795       # input("Enter start frame :")
+last_frame_number =  2968       # input("Enter start frame :")
 current_frame = int(first_frame_number)
 
 # for video output
